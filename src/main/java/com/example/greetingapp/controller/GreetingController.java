@@ -3,10 +3,7 @@ package com.example.greetingapp.controller;
 import com.example.greetingapp.model.Greeting;
 import com.example.greetingapp.service.GreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -25,9 +22,13 @@ public class GreetingController {
     public String displayMessage(){
         return service.greetingMessage();
     }
-    @GetMapping("/greetings")
+    @RequestMapping("/greetings")
     public String greetWithName(@RequestParam(value = "firstName", defaultValue = "") String firstName,
                                 @RequestParam(value = "lastName", defaultValue = "") String lastName){
         return service.greetWithName(firstName, lastName);
+    }
+    @PostMapping("/addGreeting")
+    public Greeting addGreeting(@RequestBody Greeting greeting){
+        return service.saveGreeting(greeting);
     }
 }
