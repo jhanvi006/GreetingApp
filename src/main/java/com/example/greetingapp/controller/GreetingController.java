@@ -25,4 +25,9 @@ public class GreetingController {
     public String displayMessage(){
         return service.greetingMessage();
     }
+    @GetMapping("/greetings")
+    public String greetWithName(@RequestParam(value = "firstName", defaultValue = "") String firstName,
+                                @RequestParam(value = "lastName", defaultValue = "") String lastName){
+        return service.greetWithName(firstName, lastName);
+    }
 }
