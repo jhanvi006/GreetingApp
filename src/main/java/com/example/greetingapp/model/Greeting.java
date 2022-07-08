@@ -6,10 +6,10 @@ import javax.persistence.Id;
 
 @Entity
 public class Greeting {
-    private long id;
+    private Integer id;
     private String message;
 
-    public Greeting(long id, String message) {
+    public Greeting(Integer id, String message) {
         this.id = id;
         this.message = message;
     }
@@ -19,11 +19,11 @@ public class Greeting {
 
     @Id
     @GeneratedValue
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

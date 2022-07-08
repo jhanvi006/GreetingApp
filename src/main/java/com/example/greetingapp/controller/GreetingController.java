@@ -5,12 +5,13 @@ import com.example.greetingapp.service.GreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
 public class GreetingController {
     public static final String template = "Hello, %s!";
-    public final AtomicLong counter = new AtomicLong();
+    public final AtomicInteger counter = new AtomicInteger();
     @Autowired
     public GreetingService service;
 
@@ -30,5 +31,9 @@ public class GreetingController {
     @PostMapping("/addGreeting")
     public Greeting addGreeting(@RequestBody Greeting greeting){
         return service.saveGreeting(greeting);
+    }
+    @GetMapping("/greetingById/{id}")
+    public Greeting displayGreetingById(@PathVariable Integer id){
+        return service.getGreetingById(id);
     }
 }
